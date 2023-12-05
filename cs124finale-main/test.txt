@@ -1,0 +1,14 @@
+User College List:
+college_name	student_grads	fulltime_student	aid_percentile	student_count	school_size	avg_rewards
+University of California at Los Angeles,0,28634,100.000000,28674,0.000000,26.800000
+
+User Courses:
+Coursename	Grade	Units	Area
+Math102	3.3	5	2
+Math101	3.3	4	2
+History201	3	3	3
+English102	4	3	1
+
+User Agenda:
+HomeworkName	DueDate	AssignmentLink
+Team Project	12/30/2023	N/A

@@ -1,0 +1,16 @@
+User College List:
+college_name	student_grads	fulltime_student	aid_percentile	student_count	school_size	avg_rewards
+San Francisco State University,73,22077,88.000000,26156,0.000000,27.000000
+University of San Diego,0,5755,87.000000,5665,0.000000,22.900000
+
+User Courses:
+Coursename	Grade	Units	Area
+Math103	3.3	5	2
+Math101	3.3	4	2
+History201	3	3	3
+English102	4	3	1
+
+User Agenda:
+HomeworkName	DueDate	AssignmentLink
+
+Team Project	12/30/2023	N/A

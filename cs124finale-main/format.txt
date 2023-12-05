@@ -1,0 +1,13 @@
+User College List:
+college_name	student_grads	fulltime_student	aid_percentile	student_count	school_size	avg_rewards
+
+User Courses:
+Coursename	Grade	Units	Area
+Math101	3.3	4	2
+English102	4	3	1
+History201	3	3	3
+Math103	3.3	5	2
+
+User Agenda:
+HomeworkName	DueDate	AssignmentLink
+Team Project	12/30/2023	N/A
