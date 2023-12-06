@@ -266,7 +266,7 @@ void Todolist::display_queue()
 	Todolistnode* traverse = pasthp;
 	while(traverse != nullptr)
 	{
-		std::cout << traverse->assignment << " Due Date: " << traverse->assignment_date.get_assignment_date_as_string() << std::endl;
+		std::cout << traverse->assignment << "\t" << "Due Date: " << traverse->assignment_date.get_assignment_date_as_string() << "\t" << "Link: " << traverse->link_to_assignment << std::endl;
 		traverse = traverse->next;
 	}
 }
