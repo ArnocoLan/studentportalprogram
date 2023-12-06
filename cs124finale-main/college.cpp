@@ -72,15 +72,15 @@ College::College()
     return avg_rewards;
   }
 
-void College::pre_process(College*& c_array)
+void College::pre_process(College*& c_array) //A function that reads from our college file and pre-processes the data before adding it to our array.
 {
   std::ifstream in_file; 
-  in_file.open("collegedata.csv");
-  int commas = 0;
-  int i = 0;
+  in_file.open("collegedata.csv"); //opens file
+  int commas = 0; //tracks the comma/column 
+  int i = 0; 
 
 
-  if (in_file.fail())
+  if (in_file.fail()) //provides output to user if file opening fails
   {
     std::cout << "Cannot read from file." << std::endl;
   }
@@ -88,109 +88,109 @@ void College::pre_process(College*& c_array)
   {
     std::string line;
     std::string word;
-    std::getline(in_file, line);
-    while(std::getline(in_file, line))
+    std::getline(in_file, line); //reads in first header line
+    while(std::getline(in_file, line)) //while loop that uses getline to read each line in the file
     {
-        std::stringstream iss(line);
-        while(std::getline(iss, word, ','))
+        std::stringstream iss(line); //iss allows string to be read as a stream
+        while(std::getline(iss, word, ',')) //second while loop that uses getline to read each comma separated word within lines.
         {
             
-           if(commas == 0)
+           if(commas == 0) //since the college names are in the first column if it is at the first comma then it will set the school names into the array
             {
                c_array[i].set_school_names(word);
             }
             
 
-             if(commas == 7)
+             if(commas == 7) //student count is in the 7th column so it will add student count to the array at the 7th comma.
             {
-                if(word == "")
+                if(word == "") //if the column/row that holds the data is empty 
                 {
-                   student_count = 0;
+                   student_count = 0; //it will set it equal to 0 so it can still display something to the user.
                    c_array[i].set_student_count(student_count);
                 }
                 else
                 {
-                  c_array[i].set_student_count(std::stod(word));
+                  c_array[i].set_student_count(std::stod(word)); //otherwise the value that is read is added to the array and it will convert from string to double.
                 }
     
             }
 
 
-            if(commas == 8)
+            if(commas == 8) //average rewards is in the 8th column so it will add average rewards to the array when it reaches the 8th comma.
             {
-                if(word == "")
+                if(word == "") //if the column/row that holds the data is empty 
                 {
-                  avg_rewards = 0;
-                  c_array[i].set_avg_rewards(0);
+                  avg_rewards = 0; //it will set it equal to 0 so it can still display something to the user.
+                  c_array[i].set_avg_rewards(0); 
                 }
                 else
                 {
-                  c_array[i].set_avg_rewards(std::stod(word));
+                  c_array[i].set_avg_rewards(std::stod(word)); //otherwise the value that is read is added to the array and it will convert from string to double.
                 }
             
             }
             
     
-            if(commas == 16)
+            if(commas == 16) //fulltime students is in the 16th column so it will add fulltime students to the array when it reaches the 16th comma.
             {
-                if(word == "")
+                if(word == "") //if the column/row that holds the data is empty 
                 {
-                  fulltime_student = 0;
+                  fulltime_student = 0; //it will set it equal to 0 so it can still display something to the user.
                   c_array[i].set_fulltime_students(0);
                 }
                 else
                 {
-                  c_array[i].set_fulltime_students(std::stoi(word));
+                  c_array[i].set_fulltime_students(std::stoi(word)); //otherwise the value that is read is added to the array and it will convert from string to integer.
                 }
             }
     
     
-            if(commas == 21)
+            if(commas == 21) //aid percentile is in the 21st column so it will add aid percentile to the array when it reaches the 21st comma.
             {
-              if(word == "")
+              if(word == "") //if the column/row that holds the data is empty 
               {
-                aid_percentile = 0;
+                aid_percentile = 0; //it will set it equal to 0 so it can still display something to the user.
                 c_array[i].set_aid_percentile(0);
               }
               else
               {
-                c_array[i].set_aid_percentile(std::stod(word));
+                c_array[i].set_aid_percentile(std::stod(word)); //otherwise the value that is read is added to the array and it will convert from string to double.
               }
             }
     
     
-              if(commas == 43)
+              if(commas == 43) //student graduates is in the 43rd column so it will add student graduates to the array when it reaches the 43rd comma.
               {
-                if(word == "")
+                if(word == "") //if the column/row that holds the data is empty 
                 {
-                   student_grads = 0;
+                   student_grads = 0; //it will set it equal to 0 so it can still display something to the user.
                    c_array[i].set_student_grads(0);
                 }
                 else
                 {
-                  c_array[i].set_student_grads(std::stoi(word));
+                  c_array[i].set_student_grads(std::stoi(word)); //otherwise the value that is read is added to the array and it will convert from string to integer.
                 }
               }
       
-        commas++; //where to place? here ig
+        commas++; //increments commas within the second while loop
       }
-      i++;
+      i++; 
       commas = 0;
     }
   }
-    in_file.close();
+    in_file.close(); //closes file
 }
 
 
-void College::display_sort_criteria()
+void College::display_sort_criteria() //A function that simply outputs a visual of the menu
 {
     std::cout << "Please choose one of the sorting criteria options." << std::endl;
     std::cout << "+-----------------------------------------------------+" << std::endl;
     std::cout << "|         Sorting Criteria Options                    |" << std::endl;
     std::cout << "+-----------------------------------------------------+" << std::endl;
     std::cout << "|     1. School Name                                  |" << std::endl;
-    std::cout << "|     2. Student grads                                |" << std::endl; //change name
-    std::cout << "|     3. Fulltime students                            |" << std::endl; //change name
+    std::cout << "|     2. Student graduates                            |" << std::endl; 
+    std::cout << "|     3. Fulltime students                            |" << std::endl; 
     std::cout << "|     4. Aid percentile                               |" << std::endl;
     std::cout << "|     5. Student count                                |" << std::endl;
     std::cout << "|     6. School size                                  |" << std::endl;
@@ -198,12 +198,12 @@ void College::display_sort_criteria()
     std::cout << "+-----------------------------------------------------+" << std::endl;
 }
 
-int College::user_sort_criteria()
+int College::user_sort_criteria() //A Function that allows the user to choose from the sorting criteria menu options
 {
     std::cout << "Please choose one of the sorting criteria options (Select a number)." << std::endl;
     int sort_criteria;
     std::cin >> sort_criteria;
-    while (sort_criteria != 1 && sort_criteria != 2 && sort_criteria != 3 && sort_criteria != 4 && sort_criteria !=5 && sort_criteria !=6 && sort_criteria !=7)
+    while (sort_criteria != 1 && sort_criteria != 2 && sort_criteria != 3 && sort_criteria != 4 && sort_criteria !=5 && sort_criteria !=6 && sort_criteria !=7) //input validation to ensure user chooses from the correct range of numbers.
     {
         std::cout << "Invalid input. Please enter a number between 1-7." << std::endl;
         std::cin >> sort_criteria;
@@ -211,7 +211,7 @@ int College::user_sort_criteria()
     return sort_criteria;
 }
 
-void College::merge(int from, int mid, int to, int& sort_criteria, College*& c_array)
+void College::merge(int from, int mid, int to, int& sort_criteria, College*& c_array) 
 {
   int n = to - from + 1;
   College* b = new College[n];
