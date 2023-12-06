@@ -355,7 +355,7 @@ void College::print_mergesort(int& sort_criteria, College*& c_array) //A functio
 
 
 
-void College::user_file(std::fstream& userfile, College*& c_array, College*& user_array) // A function that allows the user to save sorted Universities of their choice to a file
+void College::user_file(std::fstream& userfile, College*& c_array, College*& user_array) // A function that allows the user to save sorted Universities of their choice to an array
 {
     // Display a numbered list of universities
     std::cout << "List of Universities:" << std::endl;
