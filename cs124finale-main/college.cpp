@@ -355,15 +355,16 @@ void College::print_mergesort(int& sort_criteria, College*& c_array) //A functio
 
 
 
-void College::user_file(std::fstream& userfile, College*& c_array, College*& user_array) 
+void College::user_file(std::fstream& userfile, College*& c_array, College*& user_array) // A function that allows the user to save sorted Universities of their choice to a file
 {
     // Display a numbered list of universities
     std::cout << "List of Universities:" << std::endl;
-    for (int i = 0; i < 28; i++) 
+    for (int i = 0; i < 28; i++) //Lists out each university with its corresponding number next to it
     {
         std::cout << i << ". " << c_array[i].get_school_names() << std::endl;
     }
 
+    // Prompts the user to choose how many colleges they want to save
     int collegenum;
     do
     {
@@ -374,7 +375,7 @@ void College::user_file(std::fstream& userfile, College*& c_array, College*& use
     while (collegenum != 1 && collegenum != 2 && collegenum != 3 && collegenum != 4 && collegenum != 5); 
       
 
-    // Ask the user to choose a university
+    // Asks the user to choose a university based off the corresponding index number
     int arraysize = 0;
     for (int i = 0; i < collegenum; i++)
     {
@@ -396,13 +397,13 @@ void College::user_file(std::fstream& userfile, College*& c_array, College*& use
       arraysize++;
     }
 
-    if (arraysize < 5)
+    if (arraysize < 5) //Fills empty slots with placeholder string
     {
       user_array[arraysize].set_school_names("empty");
     }
 }
 
-void College::display_uc()
+void College::display_uc() //A function that simply outputs all UCs and their data
 {
   std::cout << "University of California at Berkeley, Student Count: 25951, Student Graduates: N/A, Full-time Students: 97.2%, Aid percentile: 99, Average Rewards: 27.6%" << std::endl;
   std::cout << std::endl;
@@ -424,13 +425,7 @@ void College::display_uc()
   std::cout << std::endl;
 }
 
-//count columns/commas for pre-processing and skipping unnecessary fields
-//college menu
-//college user list
-//menu user interface
-//show user all sorting criteria
-//once they pick ask if they would like to save college data to personal list
-//save everything from file to list
+
 /*
 void College::read_userfile(std::fstream& userfile, College*& userarray)
 {
@@ -492,7 +487,7 @@ void College::read_userfile(std::fstream& userfile, College*& userarray)
     }
 }
 */
-void College::write_userlist_to_file(std::fstream& userfile, College*& user_array)
+void College::write_userlist_to_file(std::fstream& userfile, College*& user_array) // A function that writes information about the user's selected colleges to a file
 {
   // Write header
   userfile << "User College List:" << std::endl;
@@ -501,8 +496,10 @@ void College::write_userlist_to_file(std::fstream& userfile, College*& user_arra
   // Traverse user list array and write to file
   for (int i = 0; i < 5; i++)
   {
+    // Checks if the current index in user_array is not empty
     if (user_array[i].get_school_names() != "empty")
     {
+	// Creates a string that contains university information separated by commas
       std::string university_info = user_array[i].get_school_names() +
                                  "," + std::to_string(user_array[i].get_student_grads()) +
                                  "," + std::to_string(user_array[i].get_fulltime_student()) +
@@ -510,17 +507,19 @@ void College::write_userlist_to_file(std::fstream& userfile, College*& user_arra
                                  "," + std::to_string(user_array[i].get_student_count()) +
                                  "," + std::to_string(user_array[i].get_school_size()) +
                                  "," + std::to_string(user_array[i].get_avg_rewards());
+	    
+     // Writes the university information to the file
       userfile << university_info << std::endl;
     }
     else
     {
-      break;
+      break; // If the slot is empty break out of the loop
     }
   }
   userfile << std::endl;
 }
 
-void College::collegemenu(std::fstream& userfile, College*& c_array, College*& user_array)
+void College::collegemenu(std::fstream& userfile, College*& c_array, College*& user_array) // This function calls all college related functions
 {
   pre_process(c_array);
   display_sort_criteria();
@@ -530,10 +529,11 @@ void College::collegemenu(std::fstream& userfile, College*& c_array, College*& u
 
 }
 
-void College::display_colleges(College* c_array)
+void College::display_colleges(College* c_array) // This function displays information about each college
 {
   for (int i = 0; i < 28; i++)
   {
+    // Creates a string that contains information about the current college
     std::string university_info = "University Name: " + c_array[i].get_school_names() +
                                  "\nStudent Grads: " + std::to_string(c_array[i].get_student_grads()) +
                                  "\nFulltime Students: " + std::to_string(c_array[i].get_fulltime_student()) +
@@ -545,7 +545,7 @@ void College::display_colleges(College* c_array)
   }
 }
 
-void College::delete_college(College*& c_array, College*& user_array)
+void College::delete_college(College*& c_array, College*& user_array) // This function deletes data from the array that holds all college data and the array that holds the users college choices.
 {
 	std::cout << "Deleting Colleges" << std::endl;
 	delete[] c_array;
