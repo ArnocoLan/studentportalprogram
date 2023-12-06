@@ -211,14 +211,16 @@ int College::user_sort_criteria() //A Function that allows the user to choose fr
     return sort_criteria;
 }
 
-void College::merge(int from, int mid, int to, int& sort_criteria, College*& c_array) 
+void College::merge(int from, int mid, int to, int& sort_criteria, College*& c_array) //merge sort function derived from Zybooks: https://learn.zybooks.com/zybook/OHLONECS124ChenhansaFall2023/chapter/14/section/7
 {
-  int n = to - from + 1;
-  College* b = new College[n];
-  int i1 = from;
-  int i2 = mid + 1;
-  int j = 0;
+  int n = to - from + 1; // Size of the range to be merged 
+  College* b = new College[n]; // Created a temporary array to store the merged elements
+  int i1 = from; // Next element to consider in the first half 
+  int i2 = mid + 1;  // Next element to consider in the second half 
+  int j = 0; // Next open position in b 
 
+  // Merge the two subarrays based on the specified sorting criteria using a switch statement and cases for each criterion
+ // Compares and merges within the if statements of each case
   while (i1 <= mid && i2 <= to) {
       switch(sort_criteria) {
           case 1:
@@ -294,39 +296,43 @@ void College::merge(int from, int mid, int to, int& sort_criteria, College*& c_a
       }
   }
 
-  while (i1 <= mid) {
+ // Copy any remaining entries of the first half
+  while (i1 <= mid) { 
       b[j] = c_array[i1];
       i1++;
       j++;
   }
-
+	
+// Copy any remaining entries of the second half
   while (i2 <= to) {
       b[j] = c_array[i2];
       i2++;
       j++;
   }
-
+	
+  // Copy back from the temporary array
   for (j = 0; j < n; j++) {
       c_array[from + j] = b[j];
   }
 
-  delete[] b;
+  delete[] b; // release memory as the temporary array is no longer needed.
 }
 
-void College::merge_sort(int from, int to, int& sort_criteria, College*& c_array)
+void College::merge_sort(int from, int to, int& sort_criteria, College*& c_array) //second merge sort function that sorts the elements in a range of an array, derived from Zybooks: https://learn.zybooks.com/zybook/OHLONECS124ChenhansaFall2023/chapter/14/section/7
 {
-    if (from == to) 
+    if (from == to) //base case
     { 
        return; 
     }
 
     int mid = (from + to) / 2;
+    // Sort the first and the second half
     merge_sort(from, mid, sort_criteria, c_array);
     merge_sort(mid + 1, to, sort_criteria, c_array);
     merge(from, mid, to, sort_criteria, c_array);
 }
 
-void College::print_mergesort(int& sort_criteria, College*& c_array)
+void College::print_mergesort(int& sort_criteria, College*& c_array) //A function that prints all the sorted values in a table
 {
     std::cout << std::setw(20) << "School Name" << std::setw(15) << "Student Grads" << std::setw(20) << "Fulltime Students" << std::setw(15) << "Aid Percentile"
               << std::setw(15) << "Student Count" << std::setw(15) << "School Size" << std::setw(15) << "Average Rewards" << std::endl;
@@ -335,7 +341,7 @@ void College::print_mergesort(int& sort_criteria, College*& c_array)
     // Print all sorted criteria
     for (int i = 0; i < SIZE; i++) 
     {
-        std::cout << std::setw(20) << c_array[i].get_school_names()
+        std::cout << std::setw(20) << c_array[i].get_school_names() //Uses set width to align the outputs and getters to get the values.
                   << std::setw(15) << c_array[i].get_student_grads()
                   << std::setw(20) << c_array[i].get_fulltime_student()
                   << std::setw(15) << c_array[i].get_aid_percentile()
@@ -348,13 +354,6 @@ void College::print_mergesort(int& sort_criteria, College*& c_array)
 }
 
 
-/* void user_file()
-  {
-    I have 28 universities in my c_array so it will list out each university with a number next to it which is the index number 
-    it will then ask the user which universities information they would like to save and they enter the number or index of that university to choose it
-    next it will go to that index and save the universities name along with its other information into a text file 
-    
-  } */
 
 void College::user_file(std::fstream& userfile, College*& c_array, College*& user_array) 
 {
