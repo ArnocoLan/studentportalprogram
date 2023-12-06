@@ -339,7 +339,7 @@ void Todolist::add_assignment() //More than 60 Lines of Code (Sorry)
 		
 		else
 		{
-			new_assignment->link_to_assignment = "No Link";
+			new_assignment->link_to_assignment = "N/A";
 		}
 		Date today;
 		today.set_current_date();
